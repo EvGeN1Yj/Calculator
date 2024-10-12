@@ -23,6 +23,20 @@ class Calculator:
             ('^', 6, 0), ('floor', 6, 1), ('ceil', 6, 2), ('C', 6, 3),
             ('m+', 7, 0), ('mc', 7, 1)
         ]
+
+        def on_button_click(self, char):
+        try:
+            if char == 'C':
+                self.expression = ""
+            elif char == '=':
+                self.expression = str(eval(self.expression))
+            elif char == 'sin':
+                self.expression = str(sin(eval(self.expression)))
+            elif char == 'cos':
+                self.expression = str(cos(eval(self.expression)))
+            elif char == '√':
+                self.expression = str(sqrt(eval(self.expression)))
+
         # Adding buttons to the calculator
         for (text, row, col) in buttons:
             button = tk.Button(root, text=text, padx=20, pady=20, font=('Arial', 18),
@@ -35,16 +49,5 @@ class Calculator:
             root.grid_columnconfigure(i, weight=1)
 
 
-    def on_button_click(self, char):
-        try:
-            if char == 'C':
-                self.expression = ""
-            elif char == '=':
-                self.expression = str(eval(self.expression))
-            elif char == 'sin':
-                self.expression = str(sin(eval(self.expression)))
-            elif char == 'cos':
-                self.expression = str(cos(eval(self.expression)))
-            elif char == '√':
-                self.expression = str(sqrt(eval(self.expression)))
+    
             
