@@ -69,3 +69,8 @@ class Calculator:
             except Exception as e:
                 self.result_var.set("Error")
                 self.expression = ""
+
+# Создание основного окна
+root = tk.Tk()
+calc = Calculator(root)
+root.mainloop()
