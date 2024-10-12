@@ -24,6 +24,17 @@ class Calculator:
             ('m+', 7, 0), ('mc', 7, 1)
         ]
 
+        # Adding buttons to the calculator
+        for (text, row, col) in buttons:
+            button = tk.Button(root, text=text, padx=20, pady=20, font=('Arial', 18),
+                               command=lambda t=text: self.on_button_click(t))
+            button.grid(row=row, column=col, sticky="nsew")
+
+        # Configure grid to make all buttons the same size
+        for i in range(8):
+            root.grid_rowconfigure(i, weight=1)
+            root.grid_columnconfigure(i, weight=1)
+            
         def on_button_click(self, char):
         try:
             if char == 'C':
@@ -36,18 +47,17 @@ class Calculator:
                 self.expression = str(cos(eval(self.expression)))
             elif char == '√':
                 self.expression = str(sqrt(eval(self.expression)))
+            elif char == '^':
+                base, exp = self.expression.split(',')
+                self.expression = str(pow(float(base), float(exp)))
+            elif char == '%':
+                self.expression = str(eval(self.expression) % 2)
+            elif char == 'floor':
+                self.expression = str(floor(eval(self.expression)))
+            elif char == 'ceil':
+                self.expression = str(ceil(eval(self.expression)))
+            elif char == 'm+':
+                self.memory += eval(self.expression)
+                self.expression = ""
 
-        # Adding buttons to the calculator
-        for (text, row, col) in buttons:
-            button = tk.Button(root, text=text, padx=20, pady=20, font=('Arial', 18),
-                               command=lambda t=text: self.on_button_click(t))
-            button.grid(row=row, column=col, sticky="nsew")
-
-        # Configure grid to make all buttons the same size
-        for i in range(8):
-            root.grid_rowconfigure(i, weight=1)
-            root.grid_columnconfigure(i, weight=1)
-
-
-    
             
