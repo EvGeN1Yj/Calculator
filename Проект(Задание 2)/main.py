@@ -23,6 +23,12 @@ class Calculator:
             ('^', 6, 0), ('floor', 6, 1), ('ceil', 6, 2), ('C', 6, 3),
             ('m+', 7, 0), ('mc', 7, 1)
         ]
+        # Adding buttons to the calculator
+        for (text, row, col) in buttons:
+            button = tk.Button(root, text=text, padx=20, pady=20, font=('Arial', 18),
+                               command=lambda t=text: self.on_button_click(t))
+            button.grid(row=row, column=col, sticky="nsew")
+
         # Configure grid to make all buttons the same size
         for i in range(8):
             root.grid_rowconfigure(i, weight=1)
