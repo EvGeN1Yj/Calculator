@@ -33,3 +33,18 @@ class Calculator:
         for i in range(8):
             root.grid_rowconfigure(i, weight=1)
             root.grid_columnconfigure(i, weight=1)
+
+
+    def on_button_click(self, char):
+        try:
+            if char == 'C':
+                self.expression = ""
+            elif char == '=':
+                self.expression = str(eval(self.expression))
+            elif char == 'sin':
+                self.expression = str(sin(eval(self.expression)))
+            elif char == 'cos':
+                self.expression = str(cos(eval(self.expression)))
+            elif char == '√':
+                self.expression = str(sqrt(eval(self.expression)))
+            
