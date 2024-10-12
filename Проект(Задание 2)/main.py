@@ -47,4 +47,9 @@ class Calculator:
                 self.expression = str(cos(eval(self.expression)))
             elif char == '√':
                 self.expression = str(sqrt(eval(self.expression)))
+            elif char == '^':
+                base, exp = self.expression.split(',')
+                self.expression = str(pow(float(base), float(exp)))
+            elif char == '%':
+                self.expression = str(eval(self.expression) % 2)
             
