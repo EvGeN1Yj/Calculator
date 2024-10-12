@@ -1,6 +1,7 @@
 import tkinter as tk
 from math import sin, cos, sqrt, pow, floor, ceil
 
+
 class Calculator:
     def __init__(self, root):
         self.root = root
@@ -10,7 +11,8 @@ class Calculator:
 
         # Entry widget for displaying calculations
         self.result_var = tk.StringVar()
-        entry = tk.Entry(root, textvariable=self.result_var, font=('Arial', 20), bd=10, insertwidth=2, width=14, borderwidth=4)
+        entry = tk.Entry(root, textvariable=self.result_var, font=('Arial', 20), bd=10, insertwidth=2, width=14,
+                         borderwidth=4)
         entry.grid(row=0, column=0, columnspan=4, sticky="nsew")
 
         # Buttons configuration
@@ -34,30 +36,36 @@ class Calculator:
         for i in range(8):
             root.grid_rowconfigure(i, weight=1)
             root.grid_columnconfigure(i, weight=1)
-            
-        def on_button_click(self, char):
-        try:
-            if char == 'C':
-                self.expression = ""
-            elif char == '=':
-                self.expression = str(eval(self.expression))
-            elif char == 'sin':
-                self.expression = str(sin(eval(self.expression)))
-            elif char == 'cos':
-                self.expression = str(cos(eval(self.expression)))
-            elif char == '√':
-                self.expression = str(sqrt(eval(self.expression)))
-            elif char == '^':
-                base, exp = self.expression.split(',')
-                self.expression = str(pow(float(base), float(exp)))
-            elif char == '%':
-                self.expression = str(eval(self.expression) % 2)
-            elif char == 'floor':
-                self.expression = str(floor(eval(self.expression)))
-            elif char == 'ceil':
-                self.expression = str(ceil(eval(self.expression)))
-            elif char == 'm+':
-                self.memory += eval(self.expression)
-                self.expression = ""
 
-            
+        def on_button_click(self, char):
+            try:
+                if char == 'C':
+                    self.expression = ""
+                elif char == '=':
+                    self.expression = str(eval(self.expression))
+                elif char == 'sin':
+                    self.expression = str(sin(eval(self.expression)))
+                elif char == 'cos':
+                    self.expression = str(cos(eval(self.expression)))
+                elif char == '√':
+                    self.expression = str(sqrt(eval(self.expression)))
+                elif char == '^':
+                    base, exp = self.expression.split(',')
+                    self.expression = str(pow(float(base), float(exp)))
+                elif char == '%':
+                    self.expression = str(eval(self.expression) % 2)
+                elif char == 'floor':
+                    self.expression = str(floor(eval(self.expression)))
+                elif char == 'ceil':
+                    self.expression = str(ceil(eval(self.expression)))
+                elif char == 'm+':
+                    self.memory += eval(self.expression)
+                    self.expression = ""
+                elif char == 'mc':
+                    self.memory = 0
+                else:
+                    self.expression += str(char)
+                self.result_var.set(self.expression)
+            except Exception as e:
+                self.result_var.set("Error")
+                self.expression = ""
