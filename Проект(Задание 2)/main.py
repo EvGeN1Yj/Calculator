@@ -52,4 +52,3 @@ class Calculator:
                 self.expression = str(pow(float(base), float(exp)))
             elif char == '%':
                 self.expression = str(eval(self.expression) % 2)
-            
