@@ -12,3 +12,14 @@ class Calculator:
         self.result_var = tk.StringVar()
         entry = tk.Entry(root, textvariable=self.result_var, font=('Arial', 20), bd=10, insertwidth=2, width=14, borderwidth=4)
         entry.grid(row=0, column=0, columnspan=4, sticky="nsew")
+
+        # Buttons configuration
+        buttons = [
+            ('1', 1, 0), ('2', 1, 1), ('3', 1, 2), ('/', 1, 3),
+            ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
+            ('7', 3, 0), ('8', 3, 1), ('9', 3, 2), ('-', 3, 3),
+            ('0', 4, 0), ('.', 4, 1), ('+', 4, 2), ('=', 4, 3),
+            ('sin', 5, 0), ('cos', 5, 1), ('√', 5, 2), ('%', 5, 3),
+            ('^', 6, 0), ('floor', 6, 1), ('ceil', 6, 2), ('C', 6, 3),
+            ('m+', 7, 0), ('mc', 7, 1)
+        ]
