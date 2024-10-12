@@ -23,3 +23,7 @@ class Calculator:
             ('^', 6, 0), ('floor', 6, 1), ('ceil', 6, 2), ('C', 6, 3),
             ('m+', 7, 0), ('mc', 7, 1)
         ]
+        # Configure grid to make all buttons the same size
+        for i in range(8):
+            root.grid_rowconfigure(i, weight=1)
+            root.grid_columnconfigure(i, weight=1)
