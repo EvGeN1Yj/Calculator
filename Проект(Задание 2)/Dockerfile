@@ -1,5 +1,5 @@
 # Используем базовый образ Ubuntu
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 # Устанавливаем переменные среды для минимального взаимодействия с пользователем
 ENV DEBIAN_FRONTEND=noninteractive
