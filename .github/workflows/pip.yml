@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Запуск пайплайна при пуше в ветку main.
+      - master  # Запуск пайплайна при пуше в ветку main.
 
 jobs:
   # 1. Тестирование проекта
