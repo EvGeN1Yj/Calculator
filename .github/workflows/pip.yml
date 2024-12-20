@@ -44,7 +44,7 @@ jobs:
         docker build -f project/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
 
-  # 3. Развертывание на сервере gkfl;
+  # 3. Развертывание на сервере
   deploy:
     runs-on: ubuntu-latest
     needs: build  # Зависит от завершения job "build"
