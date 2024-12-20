@@ -24,5 +24,5 @@ RUN ls -R /app
 EXPOSE 5000
 
 # Команда для запуска приложения
-CMD ["python3", "/app/project/main.py"]
+CMD ["python3", "/app/main.py"]
 #CMD xvfb-run --server-args="-screen 0 1024x768x24" python3 project/main.py
