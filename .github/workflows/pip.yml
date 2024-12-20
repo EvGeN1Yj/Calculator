@@ -41,8 +41,8 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -f project/Dockerfile -t username/calculator-app:latest .
-        docker push username/calculator-app
+        docker build -f project/Dockerfile -t DOCKER_USERNAME/calculator-app:latest .
+        docker push DOCKER_USERNAME/calculator-app
 
   # 3. Развертывание на сервере
   deploy:
