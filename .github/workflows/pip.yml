@@ -57,5 +57,5 @@ jobs:
         key: ${{ secrets.SERVER_PASSWORD }}
         script: |
           docker ps -q -f "name=calculator-app" | grep -q . && docker stop calculator-app && docker rm calculator-app
-          docker pull your-dockerhub-username/calculator-app
-          docker run -d -p 5000:5000 --name calculator-app your-dockerhub-username/calculator-app
+          docker pull DOCKER_USERNAME/calculator-app
+          docker run -d -p 5000:5000 --name calculator-app DOCKER_USERNAME/calculator-app
