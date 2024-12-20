@@ -17,9 +17,12 @@ WORKDIR /app
 # Копируем файлы проекта
 COPY . /app
 
+# Печатаем структуру каталогов, чтобы проверить, что все файлы скопированы
+RUN ls -R /app
+
 # Открываем порт для приложения
 EXPOSE 5000
 
 # Команда для запуска приложения
 #CMD ["python3", "main.py"]
-CMD xvfb-run --server-args="-screen 0 1024x768x24" python3 project/main.py
+CMD xvfb-run --server-args="-screen 0 1024x768x24" python3 main.py
