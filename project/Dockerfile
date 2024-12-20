@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Копируем файлы проекта
-COPY . /app
+COPY project/ /app/
 
 # Печатаем структуру каталогов, чтобы проверить, что все файлы скопированы
 RUN ls -R /app
