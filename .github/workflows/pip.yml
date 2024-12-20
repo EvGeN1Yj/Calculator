@@ -62,11 +62,13 @@ jobs:
           # Подтягиваем последнюю версию образа с Docker Hub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
           
+          # Стартуем контейнер
+          sudo docker run --force-recreate -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+          
           # Устанавливаем X11 сервер внутри контейнера
           sudo docker exec calculator-app bash -c "export DISPLAY=:0 && python3 /app/project/main.py"
           
-          # Стартуем контейнер
-          sudo docker run -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+          
         
           
   
