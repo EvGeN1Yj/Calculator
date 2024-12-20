@@ -66,5 +66,5 @@ jobs:
           sudo docker run -d -p 5000:5000 --name calculator-app --force-recreate ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
         
           # Устанавливаем X11 сервер внутри контейнера
-          sudo docker exec calculator-app bash -c "export DISPLAY=:0 && python3 main.py"
+          sudo docker exec calculator-app bash -c "export DISPLAY=:0 && python3 /app/project/main.py"
   
