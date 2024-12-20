@@ -56,7 +56,8 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
-          sudo docker ps -q -f "name=calculator-app" | grep -q . && sudo docker stop calculator-app && sudo docker rm calculator-app
-          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
-          sudo docker run -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+          #Стартуем контейнер, если его нет
+          sudo docker ps -q -f "name=calculator-app" | grep -q . || sudo docker run -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+          #Устанавливаем X11 сервер внутри контейнера
+          sudo docker exec -it calculator-app bash -c "export DISPLAY=:0 && python3 main.py"
   

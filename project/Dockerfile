@@ -17,11 +17,9 @@ WORKDIR /app
 # Копируем файлы проекта
 COPY . /app
 
-# Устанавливаем зависимости из requirements.txt
-#RUN pip3 install --no-cache-dir -r requirements.txt
-
 # Открываем порт для приложения
 EXPOSE 5000
 
 # Команда для запуска приложения
-CMD ["python3", "main.py"]
+#CMD ["python3", "main.py"]
+CMD xvfb-run --server-args="-screen 0 1024x768x24" python3 main.py
