@@ -54,8 +54,9 @@ jobs:
       with:
         host: ${{ secrets.SERVER_IP }}
         username: ${{ secrets.SERVER_USER }}
-        key: ${{ secrets.SERVER_PASSWORD }}
+        password: ${{ secrets.SERVER_PASSWORD }}
         script: |
           docker ps -q -f "name=calculator-app" | grep -q . && docker stop calculator-app && docker rm calculator-app
-          docker pull DOCKER_USERNAME/calculator-app
-          docker run -d -p 5000:5000 --name calculator-app DOCKER_USERNAME/calculator-app
+          docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+          docker run -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+  
