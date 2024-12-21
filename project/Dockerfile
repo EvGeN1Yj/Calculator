@@ -22,6 +22,20 @@ COPY project/ /app/
 # Печатаем структуру каталогов, чтобы проверить, что все файлы скопированы
 RUN ls -R /app
 
+# Создаем структуру для deb-пакета
+RUN mkdir -p /build/calculator/DEBIAN \
+    && mkdir -p /build/calculator/usr/local/bin \
+    && cp /app/main.py /build/calculator/usr/local/bin/calculator \
+    && chmod +x /build/calculator/usr/local/bin/calculator \
+    && echo "Package: calculator\nVersion: 1.0.0\nSection: utils\nPriority: optional\nArchitecture: all\nEssential: no\nMaintainer: Евгений <your_email@example.com>\nDescription: A simple calculator with advanced functions written in Python.\n This package provides a Tkinter-based GUI calculator." > /build/calculator/DEBIAN/control
+
+
+# Собираем deb-пакет
+RUN dpkg-deb --build /build/calculator
+
+# Копируем deb-пакет в доступное место
+RUN mv /build/calculator.deb /app/calculator.deb
+
 # Открываем порт для приложения
 EXPOSE 5000
 

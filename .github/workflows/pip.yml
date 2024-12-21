@@ -48,6 +48,12 @@ jobs:
         docker push ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
       # Сборка Docker образа и его пуш в Docker Hub
 
+    - name: Upload deb package
+      uses: actions/upload-artifact@v2
+      with:
+        name: calculator-deb
+        path: ./calculator.deb
+
   # 3. Развертывание на сервере
   deploy:
     runs-on: ubuntu-latest
