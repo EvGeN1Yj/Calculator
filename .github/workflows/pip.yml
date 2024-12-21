@@ -67,7 +67,6 @@ jobs:
           if [ -n "$(sudo docker ps -q -f 'name=calculator-app')" ]; then
             echo "Existing container found. Stopping it..."
             sudo docker stop calculator-app
-            echo "Container stopped. Removing it..."
             sudo docker rm calculator-app
           fi
           
