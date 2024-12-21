@@ -27,4 +27,4 @@ EXPOSE 5000
 
 # Команда для запуска приложения
 #CMD ["python3", "/app/main.py"]
-CMD ["xvfb-run", "--auto-server-num", "--server-args=-screen,0,1024x768x24", "python3", "/app/main.py"]
+CMD xvfb-run --server-args="-screen 0 1024x768x24" python3 /app/main.py
