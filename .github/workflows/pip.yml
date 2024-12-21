@@ -22,7 +22,7 @@ jobs:
     - name: Run unittests
       run: python -m unittest discover
 
-  # 2. Сборка Docker-образа
+  # 2. Сборка Docker-образа sdca
   build:
     runs-on: ubuntu-latest
     needs: test  # Зависит от завершения job "test"
