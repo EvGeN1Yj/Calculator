@@ -56,18 +56,32 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
-          # Останавливаем и удаляем контейнер, если он не работает
-          sudo docker ps -q -f "name=calculator-app" | grep -q . && sudo docker stop calculator-app && sudo docker rm calculator-app
+#          # Останавливаем и удаляем контейнер, если он не работает
+#          sudo docker ps -q -f "name=calculator-app" | grep -q . && sudo docker stop calculator-app && sudo docker rm calculator-app
+#
+#          # Подтягиваем последнюю версию образа с Docker Hub
+#          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+#
+#          # Стартуем контейнер
+#          sudo docker run --force-recreate -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+#
+#          # Устанавливаем X11 сервер внутри контейнера
+#          sudo docker exec calculator-app bash -c "export DISPLAY=:0 && python3 /app/project/main.py"
 
-          # Подтягиваем последнюю версию образа с Docker Hub
-          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
-          
-          # Стартуем контейнер
-          sudo docker run --force-recreate -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
-          
-          # Устанавливаем X11 сервер внутри контейнера
-          sudo docker exec calculator-app bash -c "export DISPLAY=:0 && python3 /app/project/main.py"
-          
+            # Останавливаем и удаляем контейнер, если он не работает
+            sudo docker ps -q -f "name=calculator-app" | grep -q . && sudo docker stop calculator-app && sudo docker rm calculator-app
+
+            # Подтягиваем последнюю версию образа с Docker Hub
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+
+            # Стартуем контейнер с настройками X11
+            sudo docker run --rm -d
+                -e DISPLAY=$DISPLAY
+                -v /tmp/.X11-unix:/tmp/.X11-unix
+                -p 5000:5000
+                --name calculator-app
+                ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+
           
         
           
