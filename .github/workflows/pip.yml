@@ -57,7 +57,7 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
           # Останавливаем и удаляем контейнер, если он не работает
-          sudo docker ps -q -f "name=calculator-app" | grep -q . && sudo docker stop calculator-app && sudo docker rm calculator-app
+          #sudo docker ps -q -f "name=calculator-app" | grep -q . && sudo docker stop calculator-app && sudo docker rm calculator-app
 
           # Подтягиваем последнюю версию образа с Docker Hub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
