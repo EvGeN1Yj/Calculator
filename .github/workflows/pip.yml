@@ -21,8 +21,6 @@ jobs:
 
     - name: Run unittests
       run: python -m unittest discover
-    - name: Run unittests
-      run: python -m unittest discover
       
 
   # 2. Сборка Docker-образа sdca
