@@ -45,7 +45,13 @@ jobs:
     - name: Build and push Docker image
       run: |
         docker build -f project/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest .
+        docker create --name extract-container ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+        docker cp extract-container:/app/calculator.deb ./calculator.deb
+        docker rm extract-container
         docker push ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+      
+      
+
       # Сборка Docker образа и его пуш в Docker Hub
 
     - name: Upload deb package
