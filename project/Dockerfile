@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     python3-tk \
-    x11-servers-utils \
+    x11-xserver-utils \
     && apt-get clean
 
 # Устанавливаем рабочую директорию
