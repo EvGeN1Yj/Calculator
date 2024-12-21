@@ -17,10 +17,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
-
+      # Устанавливает последнюю версию Python 3.9 для выполнения тестов
 
     - name: Run unittests
       run: python -m unittest discover
+      # Запускает все юнит-тесты в директории проекта
 
   # 2. Сборка Docker-образа sdca
   build:
@@ -32,17 +33,20 @@ jobs:
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
+      # Настройка Docker Buildx для сборки образов
 
     - name: Log in to DockerHub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+      # Авторизация пользователя в Docker Hub
 
     - name: Build and push Docker image
       run: |
         docker build -f project/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+      # Сборка Docker образа и его пуш в Docker Hub
 
   # 3. Развертывание на сервере
   deploy:
@@ -63,6 +67,8 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
           
           sudo docker run -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+      # Развертывание Docker-контейнера на удаленном сервере
+
 #          # Стартуем контейнер с настройками X11
 #          sudo docker run --rm -d \
 #              -e DISPLAY=$DISPLAY \
