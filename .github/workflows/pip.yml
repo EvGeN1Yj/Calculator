@@ -61,14 +61,15 @@ jobs:
 
           # Подтягиваем последнюю версию образа с Docker Hub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
-
-          # Стартуем контейнер с настройками X11
-          sudo docker run --rm -d \
-              -e DISPLAY=$DISPLAY \
-              -v /tmp/.X11-unix:/tmp/.X11-unix \
-              -p 5000:5000 \
-              --name calculator-app \
-              ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+          
+          sudo docker run -d -p 5000:5000 --name calculator-app ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
+#          # Стартуем контейнер с настройками X11
+#          sudo docker run --rm -d \
+#              -e DISPLAY=$DISPLAY \
+#              -v /tmp/.X11-unix:/tmp/.X11-unix \
+#              -p 5000:5000 \
+#              --name calculator-app \
+#              ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
 
           
         
